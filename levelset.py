@@ -179,6 +179,7 @@ class levelset_:
             __, contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             cv2.drawContours(showimg, contours, -1, (0, 0, 255), 1)
             cv2.imshow("img", showimg)
+            cv2.waitKey(1)
 
 
 if __name__ == "__main__":
