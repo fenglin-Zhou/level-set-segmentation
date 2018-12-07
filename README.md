@@ -9,6 +9,6 @@
 这是大佬的[c++代码](https://blog.csdn.net/a553654745/article/details/45500803) 写的非常优美 <br />
 ## 这是图像的前后对比 <br />
 * 处理前
-![old](./5.png)
+![old](./images/5.png)
 * 处理后
 ![new](./end_5.png)
