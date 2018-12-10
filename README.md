@@ -7,8 +7,9 @@
 在网上找了很多但是也没有找到python 的code <br />
 所以自己参考他人的c++代码写了一份python的 <br />
 这是大佬的[c++代码](https://blog.csdn.net/a553654745/article/details/45500803) 写的非常优美 <br />
+这两天根据图像在大佬的基础上做了一些小改动
 ## 这是图像的前后对比 <br />
 * 处理前
-![old](./images/5.png)
+![old](./images/200.png)
 * 处理后
-![new](./end_5.png)
+![new](./level200.png)
