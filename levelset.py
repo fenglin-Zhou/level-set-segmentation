@@ -62,11 +62,10 @@ class levelset_:
         self.m_mK[2][2] = 0.5
 
         c = 2
-        print(rect.get_x(),rect.get_width())
+        print(rect.get_x(), rect.get_width())
         for i in range(self.m_iRow):
             for j in range(self.m_iCol):
-                if (
-                        i < rect.get_y() or i > rect.get_y() + rect.get_height() or j < rect.get_x() or j > rect.get_x() + rect.get_width()):
+                if (i < rect.get_y() or i > rect.get_y() + rect.get_height() or j < rect.get_x() or j > rect.get_x() + rect.get_width()):
                     self.m_mPhi[i][j] = -c
                 else:
                     self.m_mPhi[i][j] = c
@@ -153,7 +152,7 @@ class levelset_:
                     areaTerm = fDirac*self.m_lambda1*(-((fImgValue-self.m_FGValue)*(fImgValue-self.m_FGValue))+
                                                       ((fImgValue-self.m_BKValue)*(fImgValue-self.m_BKValue)))
                     self.m_mPhi[j][k] = self.m_mPhi[j][k]+self.m_timestep*(lengthTerm+penalizeTerm+areaTerm)
-                    if j==100 and k==100:
+                    if j == 100 and k == 100:
                         print(areaTerm)
             global showimg
             #print(self.m_mPhi)
@@ -163,13 +162,13 @@ class levelset_:
             mask = np.zeros((self.m_iRow, self.m_iCol))
             for j in range(self.m_iRow):
                 for k in range(self.m_iCol):
-                    if self.m_mPhi[j][k]>0:
+                    if self.m_mPhi[j][k] > 0:
                         mask[j][k] = 255
                     else:
                         mask[j][k] = 0
             #mask = self.m_mPhi
             mask = mask.astype(np.uint8)
-            _, mask = cv2.threshold(mask,1,255,cv2.THRESH_BINARY)
+            _, mask = cv2.threshold(mask, 1, 255, cv2.THRESH_BINARY)
             #print(mask)
             #cv2.imshow("mask", mask)
             #cv2.waitKey(0)
@@ -178,19 +177,20 @@ class levelset_:
             mask = cv2.erode(mask, kernel)
             __, contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             cv2.drawContours(showimg, contours, -1, (0, 0, 255), 1)
-            cv2.imshow("img", showimg)
-            cv2.waitKey(1)
+            # cv2.imshow("img", showimg)
+            # cv2.waitKey(1)
 
 
 if __name__ == "__main__":
-    img = cv2.imread('./5.png')
+    img = cv2.imread('./images/200.png')
     size = img.shape
-    rect = plt.Rectangle((0, 0), size[1], size[0])
+    rect = plt.Rectangle((0, 0), size[1], size[0]) #定义初始化曲线
     #print(rect)
     #initializePhi(img, rect)
     #Dirac()
     level = levelset_()
     level.initializePhi(img, rect)
     level.EVolution()
-    cv2.imshow("img",showimg)
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    cv2.imshow("img", showimg)
     cv2.waitKey(0)
